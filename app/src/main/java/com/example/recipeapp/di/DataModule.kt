@@ -4,11 +4,19 @@ import android.content.Context
 import androidx.room.Room
 import com.example.recipeapp.data.local.RecipeDao
 import com.example.recipeapp.data.local.RecipeDatabase
+import com.example.recipeapp.data.remote.RecipeApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Converter
+import retrofit2.Converter.Factory
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 
@@ -17,6 +25,47 @@ import javax.inject.Singleton
 interface DataModule {
 
     companion object {
+
+
+        @Provides
+        @Singleton
+        fun provideJson(): Json {
+            return Json{
+                ignoreUnknownKeys = true
+                coerceInputValues = true
+            }
+        }
+
+        @Provides
+        @Singleton
+        fun provideConverterFactory(
+            json: Json
+        ): Converter.Factory {
+            return  json.asConverterFactory(
+                "application/json".toMediaType()
+            )
+        }
+
+
+        @Provides
+        @Singleton
+        fun provideRetrofit(
+            converterFactory: Factory
+        ): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl("https://api.spoonacular.com/")
+                .addConverterFactory(converterFactory)
+                .build()
+        }
+
+
+        @Provides
+        @Singleton
+        fun provideApiService(
+            retrofit: Retrofit
+        ): RecipeApiService {
+            return retrofit.create()
+        }
 
         @Provides
         @Singleton
