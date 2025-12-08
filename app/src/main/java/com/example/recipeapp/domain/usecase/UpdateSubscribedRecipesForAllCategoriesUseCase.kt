@@ -7,6 +7,6 @@ class UpdateSubscribedRecipesForAllCategoriesUseCase @Inject constructor(
     private val repository: MainRecipeRepository
 ) {
     suspend operator fun invoke() {
-        repository.updateSubscribedRecipesForAllCategories()
+        repository.updateSubscribedRecipesForAllSubscriptions()
     }
 }

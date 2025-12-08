@@ -7,7 +7,7 @@ class AddCategoryUseCase @Inject constructor(
     private val repository: MainRecipeRepository
 ) {
     suspend operator fun invoke(category: String) {
-        repository.addCategory(category)
+        repository.addSubscription(category)
         repository.updateRecipeForTopic(category)
     }
 }

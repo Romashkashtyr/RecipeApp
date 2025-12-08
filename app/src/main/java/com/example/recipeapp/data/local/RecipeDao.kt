@@ -21,7 +21,7 @@ interface RecipeDao {
     @Delete
     suspend fun deleteSubscription(subscriptionDbModel: SubscriptionDbModel)
 
-    @Query("SELECT * FROM recipes WHERE category IN (:categories) ORDER BY publishedAt DESC")
+    @Query("SELECT * FROM recipes WHERE category IN (:categories)")
     fun getAllRecipesByCategories(categories: List<String>): Flow<List<RecipeDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

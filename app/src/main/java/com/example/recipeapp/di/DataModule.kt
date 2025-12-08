@@ -5,6 +5,9 @@ import androidx.room.Room
 import com.example.recipeapp.data.local.RecipeDao
 import com.example.recipeapp.data.local.RecipeDatabase
 import com.example.recipeapp.data.remote.RecipeApiService
+import com.example.recipeapp.data.repository.MainRecipeRepositoryImpl
+import com.example.recipeapp.domain.repository.MainRecipeRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +26,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 interface DataModule {
+
+    @Binds
+    @Singleton
+    fun bindMainRecipeRepository(impl: MainRecipeRepositoryImpl): MainRecipeRepository
 
     companion object {
 

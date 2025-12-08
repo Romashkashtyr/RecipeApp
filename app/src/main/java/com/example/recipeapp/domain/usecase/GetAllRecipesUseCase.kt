@@ -7,5 +7,5 @@ class GetAllRecipesUseCase @Inject constructor(
     private val repository: MainRecipeRepository
 ) {
 
-    operator fun invoke() = repository.getAllRecipes()
+    operator fun invoke() = repository.getAllSubscriptions()
 }

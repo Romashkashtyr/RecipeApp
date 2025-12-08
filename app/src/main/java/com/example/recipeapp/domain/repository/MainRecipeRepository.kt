@@ -5,15 +5,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainRecipeRepository {
 
-    fun getAllRecipes(): Flow<List<String>>
+    fun getAllSubscriptions(): Flow<List<String>>
 
-    suspend fun addCategory(category: String)
+    suspend fun addSubscription(category: String, cuisine: String)
 
-    suspend fun updateRecipeForTopic(recipeName: String)
+    suspend fun updateRecipeForTopic(recipeName: String, cuisine: String)
 
-    suspend fun removeCategory(category: String)
+    suspend fun removeCategory(category: String, cuisine: String)
 
-    suspend fun updateSubscribedRecipesForAllCategories()
+    suspend fun updateSubscribedRecipesForAllSubscriptions()
 
     fun getRecipesByCategory(category: List<String>): Flow<List<Recipe>>
 
