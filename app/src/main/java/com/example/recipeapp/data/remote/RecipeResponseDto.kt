@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecipeResponseDto(
+    @SerialName("recipes")
+    val recipes: List<RecipeDto> = listOf(),
     @SerialName("query")
     val query: String = "",
     @SerialName("cookingMinutes")
@@ -24,8 +26,6 @@ data class RecipeResponseDto(
     val sourceName: String = "",
     @SerialName("sourceUrl")
     val sourceUrl: String = "",
-    @SerialName("summary")
-    val summary: String = "",
     @SerialName("title")
     val title: String = ""
 )

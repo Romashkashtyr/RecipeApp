@@ -21,9 +21,10 @@ import androidx.room.Index
 data class RecipeDbModel(
     val title: String,
     val description: String,
+    val cuisine: String,
+    val query: String,
     val imageUrl: String?,
     val sourceName: String,
-    val publishedAt: Long,
     val url: String,
     val category: String
 )
