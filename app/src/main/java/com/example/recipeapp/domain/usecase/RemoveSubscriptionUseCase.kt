@@ -6,7 +6,7 @@ import javax.inject.Inject
 class RemoveSubscriptionUseCase @Inject constructor(
     private val repository: MainRecipeRepository
 ) {
-    suspend operator fun invoke(category: String) {
-        repository.removeCategory(category)
+    suspend operator fun invoke(category: String, cuisine: String) {
+        repository.removeCategory(category, cuisine)
     }
 }
